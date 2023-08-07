@@ -24,7 +24,7 @@ public class SeleniumLocators extends BaseTest {
 	 */
 	
 	@Test
-	public void tagNameLocator() {
+	public void tagNameLocator() {		//se regasesc de mai multe ori in DOM ul nostru
 		
 		System.out.println("test");	
 		System.err.println("eroare de test");
@@ -34,7 +34,7 @@ public class SeleniumLocators extends BaseTest {
 //		discoverText.click();
 		assertEquals(discoverText.getText(), "Discover");
 		
-		driver.findElement(By.tagName("em")).getText();	//fac de fiecare data request catre browser pe elementul respectiv
+		driver.findElement(By.tagName("em")).getText();	//fac de fiecare data request catre browser pe elementul respectiv, em inseamna italic pt text
 //		driver.findElement(By.tagName("em")).click());
 		
 		//ca sa pot aplica metodele din selenium trebuie sa am un obiect de tip webElement
@@ -76,16 +76,58 @@ public class SeleniumLocators extends BaseTest {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].setAttribute('style', 'border:4px solid red')", price);		//facem highlight la u webelemet pe care nu vreau neaparat sa l folosesc
 		System.out.println(price.getText());
-		assertTrue(price.getText().contains("20,55"));
+		assertTrue(price.getText().contains("20.55"));
 		
 	}
 	
 	@Test(priority=5)
-	public void idLocator() {
-		driver.findElement(By.id("tab-title-reviews")).click();
+	public void idLocator() throws InterruptedException {
 		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0, 300)");
+		driver.findElement(By.id("tab-title-reviews")).click();
+		//Thread.sleep(2000);
 		WebElement commentBox = driver.findElement(By.id("comments"));
 		assertTrue(commentBox.isDisplayed());
 	}
+	
+	@Test(priority=6)
+	public void nameLocator() {		//ne referim la atributul name= " "
+
+	//	driver.findElement(By.name("comment")).sendKeys("My comment");
+		
+		WebElement commentBox = driver.findElement(By.name("comment"));
+		commentBox.sendKeys("My comment");
+		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].setAttribute('style', 'border:4px solid red')", commentBox);
+		
+	}
+	
+	@Test(priority=7)
+	public void cssSelectorLocator() {
+		
+		WebElement authorBox = driver.findElement(By.cssSelector("input[name=\"author\"]"));		// \ignora caracterul care urmeaza dupa \, escape character
+		// WebElement authorBox = driver.findElement(By.cssSelector("input[name='author']"));	
+		authorBox.sendKeys("Madalina Model");
+		
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].setAttribute('style', 'border:4px solid red')", authorBox);
+		
+	}
+	/*
+	 * XPATH ----> //input[@type='email']
+	 * CSS ------> input[type='email']
+	 */
+	@Test(priority=8)
+	public void xpathLocator() {
+		
+		WebElement emailBox = driver.findElement(By.xpath("//input[@type='email']"));
+		emailBox.sendKeys("password123");
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].setAttribute('style', 'border:4px solid red')", emailBox);
+	}
+		
+	
 	
 }
