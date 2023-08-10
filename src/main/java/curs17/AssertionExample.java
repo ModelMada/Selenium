@@ -22,8 +22,8 @@ public class AssertionExample {
 	
 	@Test
 	public void checkTitle2() {
-		assertEquals(actualTitle, expectedTitle);
-
+		assertEquals(actualTitle, expectedTitle);  //intrerupe executia
+		System.out.println("Alo!");
 	
 	}
 	

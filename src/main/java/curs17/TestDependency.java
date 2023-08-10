@@ -8,7 +8,7 @@ public class TestDependency {
 	
 	@Test
 	public void method1() {
-		assertTrue(false);
+		assertTrue(true);
 		System.out.println("Method 1");
 	}
 	
