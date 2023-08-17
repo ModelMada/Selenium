@@ -18,7 +18,8 @@ public class BaseTest {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();		//face maximize la browser
 		// driver.get("https://keybooks.ro/");
-		driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		//driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		driver.get("https://the-internet.herokuapp.com/dynamic_loading/2");
 
 	}
 	

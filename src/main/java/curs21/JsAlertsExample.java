@@ -51,7 +51,7 @@ public class JsAlertsExample extends BaseTest {
 		
 		//clasa parinte de alerte
 		Alert alertaJs = driver.switchTo().alert();	//pune in obiectul js alerta respectiva
-		alertaJs.sendKeys("Text");
+		alertaJs.sendKeys("Text");		//textul este trimis in DOM, dar nu este vizibil la rulare, se scrie in background
 		alertaJs.accept();
 		
 		
