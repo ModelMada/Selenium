@@ -16,21 +16,52 @@ public class TemaCurs19 extends BaseTest{
 	
 	@Test
 	public void findTheBook() {
-
+		//div[aria-hidden='false'] a[href^='the-forest']  // asta poate fi cautat in afara 
 		//WebElement searchedBook = driver.findElement(By.linkText("The forest"));
-		WebElement searchedBook = driver.findElement(By.cssSelector("a[href^='the-forest']"));
+		// WebElement searchedBook = driver.findElement(By.cssSelector("a[href^='the-forest']")); //daca identific cartea in afara forului, identific cartea, gaseste 4 elemente. il gaseste pr primul si apoi cand da click pe tabul 2 trebuie sa gaseasca elementul 2 si il gaseste tot pe primul
 		
-		List<WebElement> menuEntries = driver.findElements(By.cssSelector("li[class*='sc_tabs_title']:not([aria-selected='true'])"));
-		for(WebElement element : menuEntries) {
+		List<WebElement> categories = driver.findElements(By.cssSelector("li[class*='sc_tabs_title']:not([aria-selected='true'])"));
+		for(WebElement element : categories) {
 			element.click();
-//			if(searchedBook.isDisplayed()) {
-//				searchedBook.click();
-//				System.out.println(driver.getCurrentUrl());		
-			
-			System.out.println(searchedBook.isDisplayed());
-			}
+			WebElement searchedBook = driver.findElement(By.cssSelector("a[href^='the-forest']"));	//va interoga de fiecare data domul
+			searchedBook.isDisplayed();
+			}	//la finalul forului oricum va fi cu clickul pe ultimul element din lista
+		
+		searchedBook.click();
+		
 		}
 		
 	}
+
+
+
+/*
+ * /*
+		 * 
+		 * List<WebElement> categoryTabs = driver.findElements(By.cssSelector("sc_tabs_title"));
+		 * 
+		 * WebElement theForest = driver.findElement(By.cssSelector("div[aria-hidden ='false'] a[href='the-forest']"));
+		 * for(WebElement element : categoryTabs){
+		 * 	
+		 * 	element.click();
+		 *  theForest.isDisplayed();
+		 * 
+		 * }
+		 * 
+		 * theForest.click();
+		 * ---assert
+		 * 
+		 *
+		 *
+		 *alta varianta era sa iteram cu for i, si cand i = catergories.length.-1
+		 *
+		 *sau
+		 *element.getText().equals('award winners')
+ */
+
+
+
+
+
 
 
