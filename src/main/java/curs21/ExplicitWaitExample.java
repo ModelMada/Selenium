@@ -16,7 +16,7 @@ public class ExplicitWaitExample extends BaseTest{
 
 	@Test
 	public void explicitWaitTest() {
-		
+		//style display none -> elementul exista insa este hidden, insa exista in DOM
 		driver.findElement(By.cssSelector("div[id=\"start\"]>button")).click();
 		
 		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
